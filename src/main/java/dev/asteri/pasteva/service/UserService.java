@@ -17,6 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
     private final UserRepository repository;
+
     public User saveUser(User user) {
         return repository.save(user);
     }

@@ -144,7 +144,7 @@ public class NoteController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         var user = userService.findByUsername(username).get();
-        if (!user.getId().equals(note.getUser().getId())){
+        if (!user.getId().equals(note.getUser().getId())) {
             throw new AccessDeniedException("Это не Ваша запись!");
         }
         noteService.deleteNote(id);

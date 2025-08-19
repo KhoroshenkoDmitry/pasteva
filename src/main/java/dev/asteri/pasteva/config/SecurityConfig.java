@@ -20,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
@@ -47,7 +48,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/signin", "/signup", "/v1/notes/public/**",
                                     "/v1/users/public/**", "/refresh_token/**", "/", "/v1/users/update",
-                                    "/error**", "/v3/**","/swagger-ui/**", "/webjars/**")
+                                    "/error**", "/v3/**", "/swagger-ui/**", "/webjars/**")
                             .permitAll();
                     auth.requestMatchers(EndpointRequest.to("health", "info")).permitAll()
                             .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll();
