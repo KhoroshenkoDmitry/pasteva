@@ -15,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.UUID;
 
 @Tag(name = "User", description = "User API")
@@ -72,7 +73,7 @@ public class UserController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Пользователь удалён"),
             @ApiResponse(responseCode = "404", description = "Пользователь не найден"),
-            @ApiResponse(responseCode = "401",  description = "Неавторизированный доступ")
+            @ApiResponse(responseCode = "401", description = "Неавторизированный доступ")
     })
     public void deleteUser(Authentication authentication) {
         var profile = getProfile(authentication);

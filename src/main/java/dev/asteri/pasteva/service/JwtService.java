@@ -27,17 +27,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class JwtService {
 
-    @Value("${jwt.secret}")
-    private String secretKey;
-
-    @Value("${jwt.access-token-expiration}")
-    private long accessTokenExpiration;
-
-    @Value("${jwt.refresh-token-expiration}")
-    private long refreshTokenExpiration;
-
     @Autowired
     private final TokenRepository repository;
+    @Value("${jwt.secret}")
+    private String secretKey;
+    @Value("${jwt.access-token-expiration}")
+    private long accessTokenExpiration;
+    @Value("${jwt.refresh-token-expiration}")
+    private long refreshTokenExpiration;
 
     public Token findByAccessToken(String accessToken) {
         return repository.findByAccessToken(accessToken).orElse(null);

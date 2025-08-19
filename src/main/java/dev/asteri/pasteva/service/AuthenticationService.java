@@ -38,12 +38,12 @@ public class AuthenticationService {
 
     public void register(SignUpRequest request) {
 
-        User user = new User();
+        var user = new User();
 
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(Role.ROLE_USER);
-        user = userRepository.save(user);
+        userRepository.save(user);
     }
 
     private void revokeAllToken(User user) {
@@ -57,6 +57,7 @@ public class AuthenticationService {
 
         tokenRepository.saveAll(validTokens);
     }
+
     private void saveUserToken(String accessToken, String refreshToken, User user) {
 
         Token token = new Token();

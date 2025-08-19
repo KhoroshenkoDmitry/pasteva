@@ -35,7 +35,7 @@ public class AuthenticationController {
             @ApiResponse(responseCode = "200", description = "Пользователь зарегистрирован"),
             @ApiResponse(responseCode = "400", description = "Имя пользователя занято или проблема с логином/паролем")
     })
-    public ResponseEntity<String> register(
+    public ResponseEntity<String> signUp(
             @Valid @RequestBody SignUpRequest registrationDto) {
 
         if (userService.existsByUsername(registrationDto.getUsername())) {
@@ -55,7 +55,7 @@ public class AuthenticationController {
             @ApiResponse(responseCode = "200", description = "Пользователь авторизирован"),
             @ApiResponse(responseCode = "401", description = "Пользователь не найден")
     })
-    public ResponseEntity<JwtAuthenticationResponse> authenticate(
+    public ResponseEntity<JwtAuthenticationResponse> signIn(
             @Valid @RequestBody SignInRequest request) {
 
         return ResponseEntity.ok(authenticationService.authenticate(request));

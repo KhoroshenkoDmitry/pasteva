@@ -9,6 +9,7 @@ import java.util.UUID;
 public class UserIdNotFoundException extends ResponseStatusException {
 
     static private final String pattern = "Пользователь с ID %s не найден";
+
     public UserIdNotFoundException(UUID id) {
         super(HttpStatus.NOT_FOUND, String.format(pattern, id.toString()));
     }

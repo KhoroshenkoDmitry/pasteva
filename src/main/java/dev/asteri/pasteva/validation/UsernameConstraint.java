@@ -3,6 +3,7 @@ package dev.asteri.pasteva.validation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
+
 import java.lang.annotation.*;
 
 @Documented
@@ -13,6 +14,8 @@ import java.lang.annotation.*;
 public @interface UsernameConstraint {
     String message() default "Некорректное имя пользователя: используйте латинские символы и цифры" +
             "от 3 до 50 символов";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }
