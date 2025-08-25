@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.InvalidParameterException;
 import java.util.UUID;
 
+@Slf4j
 @Tag(name = "Note", description = "Note API")
 @RestController
 @RequestMapping("/v1/notes")
@@ -47,24 +49,26 @@ public class NoteController {
             @ApiResponse(responseCode = "400", description = "Ошибка валидации")
     })
     public CreateNoteResponse saveNote(@Valid @RequestBody CreateNoteRequest request) {
+        var name = request.getName();
+        log.info("Запись: \"{}\", начато создание записи.", name);
         var note = new Note();
         var authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("SecurityContext: " + SecurityContextHolder.getContext());
-        System.out.println("Authentication: " + authentication);
         if (authentication != null
                 && authentication.isAuthenticated()
                 && !(authentication instanceof AnonymousAuthenticationToken)) {
             String username = authentication.getName();
             User user = userService.findByUsername(username).get();
             note.setUser(user);
+            log.info("Запись: \"{}\", установлен автор: \"{}\".", name, username);
         }
-        note.setNoteName(request.getName());
+        note.setNoteName(name);
         note.setBody(request.getBody());
         var description = request.getDescription();
         if (description != null) {
             note.setDescription(description);
         }
         var savedNote = noteService.saveNote(note);
+        log.info("Запись \"{}\" сохранена.", name);
         if (savedNote.getUser() == null) {
             return new CreateNoteResponse(savedNote.getId(), savedNote.getCreatedAt(),
                     savedNote.getNoteName());
@@ -84,10 +88,13 @@ public class NoteController {
             @ApiResponse(responseCode = "404", description = "Запись не найдена")
     })
     public Note findById(@PathVariable UUID id) {
+        log.info("Запись с ID \"{}\". Начат поиск.", id);
         var note = noteService.findById(id);
         if (note.isEmpty()) {
+            log.error("Записи с ID \"{}\" не существует.", id);
             throw new NoteIdNotFoundException(id);
         }
+        log.info("Запись с ID \"{}\" найдена.", id);
         return note.get();
     }
 
@@ -108,19 +115,28 @@ public class NoteController {
         var id = request.getId();
         var note = findById(id);
         var user = note.getUser();
-        if (user == null || !username.equals(user.getUsername())) {
+        log.info("Запись с ID \"{}\" обновляется.", id);
+        if (user == null) {
+            log.error("Пользователь не авторизован!");
+            throw new AccessDeniedException("Пользователь не авторизован!");
+        }
+        if (!username.equals(user.getUsername())) {
+            log.error("Запись с ID \"{}\" не принадлежит пользователю \"{}\"!", id, user.getId());
             throw new AccessDeniedException("Это не Ваша запись!");
         }
         var name = request.getName();
         if (name != null) {
+            log.info("Запись с ID \"{}\": имя изменено с \"{}\" на \"{}\"", id, note.getNoteName(), name);
             noteService.updateNameById(name, id);
         }
         var description = request.getDescription();
         if (description != null) {
+            log.info("Запись с ID \"{}\": описание изменено с \"{}\" на \"{}\"", id, note.getDescription(), description);
             noteService.updateDescriptionById(description, id);
         }
         var body = request.getBody();
         if (body != null) {
+            log.info("Запись с ID \"{}\": тело изменено", id);
             noteService.updateBodyById(body, id);
         }
     }
@@ -137,16 +153,21 @@ public class NoteController {
             @ApiResponse(responseCode = "403", description = "Неавторизированный доступ"),
     })
     public void deleteNote(@PathVariable UUID id) {
-        if (!noteService.existsById(id)) {
+        log.info("Запись с ID \"{}\": начато удаление.", id);
+        var noteOptional = noteService.findById(id);
+        if (noteOptional.isEmpty()) {
+            log.error("Запись с ID \"{}\" не существует!", id);
             throw new NoteIdNotFoundException(id);
         }
-        var note = noteService.findById(id).get();
+        var note = noteOptional.get();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         var user = userService.findByUsername(username).get();
         if (!user.getId().equals(note.getUser().getId())) {
+            log.error("Запись с ID \"{}\" не принадлежит пользователю {}!", id, username);
             throw new AccessDeniedException("Это не Ваша запись!");
         }
         noteService.deleteNote(id);
+        log.info("Запись с ID \"{}\" успешно удалена!", id);
     }
 }
