@@ -4,7 +4,7 @@
 
     <property name="APP_NAME" value="pasteva"/>
 
-    <property name="LOG_PATH" value="D:/Code/java_spring/pasteva/src/main/resources/logs"/>
+    <property name="LOG_PATH" value="{YOUR_LOG_DIR}/logs"/>
     <property name="LOG_FILE" value="${LOG_PATH}/${APP_NAME}.log"/>
 
     <property name="CONSOLE_LOG_PATTERN"
@@ -47,4 +47,5 @@
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>
+
 </configuration>
