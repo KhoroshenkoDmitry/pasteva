@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+@Slf4j
 @Tag(name = "User", description = "User API")
 @RestController
 @RequestMapping("/v1/users")
@@ -36,8 +38,10 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "Пользователь не найден")
     })
     public UserProfileResponse getProfile(Authentication authentication) {
+        log.info("Пользователь \"{}\": получение профиля.", authentication.getName());
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         User profile = userService.findByUsername(userDetails.getUsername()).get();
+        log.info("Пользователь \"{}\": профиль получен.", authentication.getName());
         return findById(profile.getId());
     }
 
@@ -52,13 +56,16 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "Пользователь не найден")
     })
     public UserProfileResponse findById(@PathVariable UUID id) {
+        log.info("Пользователь с ID \"{}\": поиск профиля.", id);
         var userOptional = userService.findById(id);
         if (userOptional.isEmpty()) {
+            log.error("Пользователя с ID \"{}\" не существует!", id);
             throw new UserIdNotFoundException(id);
         }
         var user = userOptional.get();
         var userId = user.getId();
         var ids = noteService.findAllIdsByUserId(userId);
+        log.info("Пользователь с ID \"{}\" найден.", id);
         return new UserProfileResponse(userId, user.getUsername(),
                 user.getRole(), user.getRegisteredAt(),
                 ids.size(), ids);
@@ -76,7 +83,10 @@ public class UserController {
             @ApiResponse(responseCode = "401", description = "Неавторизированный доступ")
     })
     public void deleteUser(Authentication authentication) {
+        var name = authentication.getName();
+        log.info("Пользователь \"{}\": удаление профиля.", name);
         var profile = getProfile(authentication);
         userService.deleteUser(profile.getId());
+        log.info("Пользователь \"{}\": профиль удалён.", name);
     }
 }
