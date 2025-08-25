@@ -1,0 +1,590 @@
+2025-08-25 11:42:35 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-08-25 11:42:35 [restartedMain] INFO  d.asteri.pasteva.PastevaApplication - Starting PastevaApplication using Java 21.0.8 with PID 15440 (D:\Code\java_spring\pasteva\build\classes\java\main started by Пользователь in D:\Code\java_spring\pasteva)
+2025-08-25 11:42:35 [restartedMain] DEBUG d.asteri.pasteva.PastevaApplication - Running with Spring Boot v3.5.4, Spring v6.2.9
+2025-08-25 11:42:35 [restartedMain] INFO  d.asteri.pasteva.PastevaApplication - No active profile set, falling back to 1 default profile: "default"
+2025-08-25 11:42:35 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-25 11:42:35 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-25 11:42:36 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-25 11:42:37 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 110 ms. Found 3 JPA repository interfaces.
+2025-08-25 11:42:37 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-25 11:42:37 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-25 11:42:37 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-08-25 11:42:37 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-25 11:42:37 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-08-25 11:42:37 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2216 ms
+2025-08-25 11:42:38 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-25 11:42:38 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-25 11:42:38 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-25 11:42:38 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-25 11:42:38 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-08-25 11:42:38 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4d35764c
+2025-08-25 11:42:38 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-08-25 11:42:38 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-25 11:42:38 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-25 11:42:39 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-25 11:42:39 [restartedMain] DEBUG org.hibernate.SQL - set client_min_messages = WARNING
+2025-08-25 11:42:39 [restartedMain] DEBUG org.hibernate.SQL - alter table if exists notes drop constraint if exists FKechaouoa6kus6k1dpix1u91c
+2025-08-25 11:42:39 [restartedMain] DEBUG org.hibernate.SQL - alter table if exists tokens drop constraint if exists FK2dylsfo39lgjyqml2tbe0b0ss
+2025-08-25 11:42:39 [restartedMain] DEBUG org.hibernate.SQL - drop table if exists notes cascade
+2025-08-25 11:42:39 [restartedMain] DEBUG org.hibernate.SQL - drop table if exists tokens cascade
+2025-08-25 11:42:39 [restartedMain] DEBUG org.hibernate.SQL - drop table if exists users cascade
+2025-08-25 11:42:39 [restartedMain] DEBUG org.hibernate.SQL - create table notes (created_at timestamp(6) with time zone, updated_at timestamp(6) with time zone, note_id uuid not null, user_id uuid, body varchar(255) not null, description varchar(255), note_name varchar(255) not null, primary key (note_id))
+2025-08-25 11:42:39 [restartedMain] DEBUG org.hibernate.SQL - create table tokens (is_logged_out boolean, token_id uuid not null, user_id uuid, access_token varchar(255), refresh_token varchar(255), primary key (token_id))
+2025-08-25 11:42:39 [restartedMain] DEBUG org.hibernate.SQL - create table users (registered_at timestamp(6) with time zone, updated_at timestamp(6) with time zone, user_id uuid not null, role varchar(255) not null check (role in ('ROLE_USER','ROLE_ADMIN')), user_password varchar(255) not null unique, username varchar(255) not null, primary key (user_id))
+2025-08-25 11:42:39 [restartedMain] DEBUG org.hibernate.SQL - alter table if exists notes add constraint FKechaouoa6kus6k1dpix1u91c foreign key (user_id) references users
+2025-08-25 11:42:39 [restartedMain] DEBUG org.hibernate.SQL - alter table if exists tokens add constraint FK2dylsfo39lgjyqml2tbe0b0ss foreign key (user_id) references users
+2025-08-25 11:42:39 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-25 11:42:39 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-08-25 11:42:39 [restartedMain] DEBUG dev.asteri.pasteva.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-08-25 11:42:40 [restartedMain] TRACE o.s.s.c.a.a.c.AuthenticationConfiguration$EnableGlobalAuthenticationAutowiredConfigurer - Eagerly initializing {securityConfig=dev.asteri.pasteva.config.SecurityConfig$$SpringCGLIB$$0@6b63615a}
+2025-08-25 11:42:40 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-25 11:42:40 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-25 11:42:40 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 13 endpoints beneath base path '/actuator'
+2025-08-25 11:42:40 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextPersistenceFilter, HeaderWriterFilter, LogoutFilter, JwtFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-25 11:42:41 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-08-25 11:42:41 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-25 11:42:41 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-25 11:42:41 [restartedMain] INFO  d.asteri.pasteva.PastevaApplication - Started PastevaApplication in 5.963 seconds (process running for 6.335)
+2025-08-25 11:43:02 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-25 11:43:02 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-08-25 11:43:02 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:43:02 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /signup
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.s.w.c.SupplierDeferredSecurityContext - Created SecurityContextImpl [Null authentication]
+2025-08-25 11:43:02 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to AnonymousAuthenticationToken [Principal=anonymousUser, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_ANONYMOUS]]
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing POST /signup
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on POST /signup using org.springframework.security.authorization.SingleResultAuthorizationManager@7f4e4b57
+2025-08-25 11:43:02 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /signup
+2025-08-25 11:43:02 [http-nio-8080-exec-1] INFO  d.a.p.c.AuthenticationController - Имя пользователя: "ALEX3XXX". Начата регистрация.
+2025-08-25 11:43:02 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select u1_0.user_id from users u1_0 where u1_0.username=? fetch first ? rows only
+2025-08-25 11:43:02 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - insert into users (user_password,registered_at,role,updated_at,username,user_id) values (?,?,?,?,?,?)
+2025-08-25 11:43:02 [http-nio-8080-exec-1] INFO  d.a.p.c.AuthenticationController - Имя пользователя: "ALEX3XXX". Регистрация окончена.
+2025-08-25 11:43:02 [http-nio-8080-exec-1] TRACE o.s.s.w.h.writers.HstsHeaderWriter - Not injecting HSTS header since it did not match request to [Is Secure]
+2025-08-25 11:43:02 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:43:04 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /signin
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.s.w.c.SupplierDeferredSecurityContext - Created SecurityContextImpl [Null authentication]
+2025-08-25 11:43:04 [http-nio-8080-exec-2] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to AnonymousAuthenticationToken [Principal=anonymousUser, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_ANONYMOUS]]
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing POST /signin
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on POST /signin using org.springframework.security.authorization.SingleResultAuthorizationManager@7f4e4b57
+2025-08-25 11:43:04 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /signin
+2025-08-25 11:43:04 [http-nio-8080-exec-2] INFO  d.a.p.c.AuthenticationController - Имя пользователя: "ALEX3XXX". Начата авторизация.
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.s.authentication.ProviderManager - Authenticating request with DaoAuthenticationProvider (1/1)
+2025-08-25 11:43:04 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:43:04 [http-nio-8080-exec-2] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2025-08-25 11:43:04 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:43:04 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select t1_0.token_id,t1_0.access_token,t1_0.is_logged_out,t1_0.refresh_token,t1_0.user_id from tokens t1_0 join users u1_0 on u1_0.user_id=t1_0.user_id where u1_0.user_id=? and t1_0.is_logged_out=false
+2025-08-25 11:43:04 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - insert into tokens (access_token,is_logged_out,refresh_token,user_id,token_id) values (?,?,?,?,?)
+2025-08-25 11:43:04 [http-nio-8080-exec-2] TRACE o.s.s.w.h.writers.HstsHeaderWriter - Not injecting HSTS header since it did not match request to [Is Secure]
+2025-08-25 11:43:04 [http-nio-8080-exec-2] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:43:13 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /v1/notes/public/save
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.s.w.c.SupplierDeferredSecurityContext - Created SecurityContextImpl [Null authentication]
+2025-08-25 11:43:13 [http-nio-8080-exec-4] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:43:13 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:43:13 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select t1_0.token_id,t1_0.access_token,t1_0.is_logged_out,t1_0.refresh_token,t1_0.user_id from tokens t1_0 where t1_0.access_token=?
+2025-08-25 11:43:13 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.user_id=?
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Did not set SecurityContextHolder since already authenticated UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@404c2571, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.s.w.a.s.CompositeSessionAuthenticationStrategy - Preparing session with ChangeSessionIdAuthenticationStrategy (1/1)
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing POST /v1/notes/public/save
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on POST /v1/notes/public/save using org.springframework.security.authorization.SingleResultAuthorizationManager@7f4e4b57
+2025-08-25 11:43:13 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /v1/notes/public/save
+2025-08-25 11:43:13 [http-nio-8080-exec-4] INFO  d.a.p.controller.NoteController - Запись: "strange bug!", начато создание записи.
+2025-08-25 11:43:13 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:43:13 [http-nio-8080-exec-4] INFO  d.a.p.controller.NoteController - Запись: "strange bug!", установлен автор: "ALEX3XXX".
+2025-08-25 11:43:13 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - insert into notes (body,created_at,description,note_name,updated_at,user_id,note_id) values (?,?,?,?,?,?,?)
+2025-08-25 11:43:13 [http-nio-8080-exec-4] INFO  d.a.p.controller.NoteController - Запись "strange bug!" сохранена.
+2025-08-25 11:43:13 [http-nio-8080-exec-4] TRACE o.s.s.w.h.writers.HstsHeaderWriter - Not injecting HSTS header since it did not match request to [Is Secure]
+2025-08-25 11:43:13 [http-nio-8080-exec-4] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:43:27 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /v1/notes/public/save
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.s.w.c.SupplierDeferredSecurityContext - Created SecurityContextImpl [Null authentication]
+2025-08-25 11:43:27 [http-nio-8080-exec-6] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to AnonymousAuthenticationToken [Principal=anonymousUser, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_ANONYMOUS]]
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing POST /v1/notes/public/save
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on POST /v1/notes/public/save using org.springframework.security.authorization.SingleResultAuthorizationManager@7f4e4b57
+2025-08-25 11:43:27 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /v1/notes/public/save
+2025-08-25 11:43:27 [http-nio-8080-exec-6] INFO  d.a.p.controller.NoteController - Запись: "llllleeeeeeeeee!", начато создание записи.
+2025-08-25 11:43:27 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - insert into notes (body,created_at,description,note_name,updated_at,user_id,note_id) values (?,?,?,?,?,?,?)
+2025-08-25 11:43:27 [http-nio-8080-exec-6] INFO  d.a.p.controller.NoteController - Запись "llllleeeeeeeeee!" сохранена.
+2025-08-25 11:43:27 [http-nio-8080-exec-6] TRACE o.s.s.w.h.writers.HstsHeaderWriter - Not injecting HSTS header since it did not match request to [Is Secure]
+2025-08-25 11:43:27 [http-nio-8080-exec-6] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:43:28 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /v1/users/profile
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.s.w.c.SupplierDeferredSecurityContext - Created SecurityContextImpl [Null authentication]
+2025-08-25 11:43:28 [http-nio-8080-exec-7] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:43:28 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:43:28 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select t1_0.token_id,t1_0.access_token,t1_0.is_logged_out,t1_0.refresh_token,t1_0.user_id from tokens t1_0 where t1_0.access_token=?
+2025-08-25 11:43:28 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.user_id=?
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Did not set SecurityContextHolder since already authenticated UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@1a78bde4, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.s.w.a.s.CompositeSessionAuthenticationStrategy - Preparing session with ChangeSessionIdAuthenticationStrategy (1/1)
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing GET /v1/users/profile
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on GET /v1/users/profile using org.springframework.security.authorization.AuthenticatedAuthorizationManager@2805a560
+2025-08-25 11:43:28 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /v1/users/profile
+2025-08-25 11:43:28 [http-nio-8080-exec-7] INFO  d.a.p.controller.UserController - Пользователь "ALEX3XXX": получение профиля.
+2025-08-25 11:43:28 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:43:28 [http-nio-8080-exec-7] INFO  d.a.p.controller.UserController - Пользователь "ALEX3XXX": профиль получен.
+2025-08-25 11:43:28 [http-nio-8080-exec-7] INFO  d.a.p.controller.UserController - Пользователь с ID "a12e4155-353b-4bea-aac0-222c5d27d501": поиск профиля.
+2025-08-25 11:43:28 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - SELECT note_id FROM notes WHERE user_id = ?
+2025-08-25 11:43:28 [http-nio-8080-exec-7] INFO  d.a.p.controller.UserController - Пользователь с ID "a12e4155-353b-4bea-aac0-222c5d27d501" найден.
+2025-08-25 11:43:28 [http-nio-8080-exec-7] TRACE o.s.s.w.h.writers.HstsHeaderWriter - Not injecting HSTS header since it did not match request to [Is Secure]
+2025-08-25 11:43:28 [http-nio-8080-exec-7] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:43:54 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing PATCH /v1/notes/update
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.s.w.c.SupplierDeferredSecurityContext - Created SecurityContextImpl [Null authentication]
+2025-08-25 11:43:54 [http-nio-8080-exec-9] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:43:54 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:43:54 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select t1_0.token_id,t1_0.access_token,t1_0.is_logged_out,t1_0.refresh_token,t1_0.user_id from tokens t1_0 where t1_0.access_token=?
+2025-08-25 11:43:54 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.user_id=?
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Did not set SecurityContextHolder since already authenticated UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@49831f7, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.s.w.a.s.CompositeSessionAuthenticationStrategy - Preparing session with ChangeSessionIdAuthenticationStrategy (1/1)
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing PATCH /v1/notes/update
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on PATCH /v1/notes/update using org.springframework.security.authorization.AuthenticatedAuthorizationManager@2805a560
+2025-08-25 11:43:54 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured PATCH /v1/notes/update
+2025-08-25 11:43:54 [http-nio-8080-exec-9] INFO  d.a.p.controller.NoteController - Запись с ID "aa281293-50fa-4518-9dc7-d070d4a13ed8". Начан поиск.
+2025-08-25 11:43:54 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select n1_0.note_id,n1_0.body,n1_0.created_at,n1_0.description,n1_0.note_name,n1_0.updated_at,u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from notes n1_0 left join users u1_0 on u1_0.user_id=n1_0.user_id where n1_0.note_id=?
+2025-08-25 11:43:54 [http-nio-8080-exec-9] ERROR d.a.p.controller.NoteController - Записи с ID "aa281293-50fa-4518-9dc7-d070d4a13ed8" не существует.
+2025-08-25 11:43:54 [http-nio-8080-exec-9] ERROR d.asteri.pasteva.advice.NoteAdvice - Статус: 404 NOT_FOUND
+Ошибка: 404 NOT_FOUND "Запись с ID aa281293-50fa-4518-9dc7-d070d4a13ed8 не найдена"
+Причина: null
+Тело: ProblemDetail[type='about:blank', title='Not Found', status=404, detail='Запись с ID aa281293-50fa-4518-9dc7-d070d4a13ed8 не найдена', instance='null', properties='null']
+
+2025-08-25 11:43:54 [http-nio-8080-exec-9] TRACE o.s.s.w.h.writers.HstsHeaderWriter - Not injecting HSTS header since it did not match request to [Is Secure]
+2025-08-25 11:43:54 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [dev.asteri.pasteva.exception.NoteIdNotFoundException: 404 NOT_FOUND "Запись с ID aa281293-50fa-4518-9dc7-d070d4a13ed8 не найдена"]
+2025-08-25 11:43:54 [http-nio-8080-exec-9] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:44:41 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing PATCH /v1/notes/update
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.s.w.c.SupplierDeferredSecurityContext - Created SecurityContextImpl [Null authentication]
+2025-08-25 11:44:41 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:44:41 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:44:41 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select t1_0.token_id,t1_0.access_token,t1_0.is_logged_out,t1_0.refresh_token,t1_0.user_id from tokens t1_0 where t1_0.access_token=?
+2025-08-25 11:44:41 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.user_id=?
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Did not set SecurityContextHolder since already authenticated UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@1dcb3a1f, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.s.w.a.s.CompositeSessionAuthenticationStrategy - Preparing session with ChangeSessionIdAuthenticationStrategy (1/1)
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing PATCH /v1/notes/update
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on PATCH /v1/notes/update using org.springframework.security.authorization.AuthenticatedAuthorizationManager@2805a560
+2025-08-25 11:44:41 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured PATCH /v1/notes/update
+2025-08-25 11:44:41 [http-nio-8080-exec-1] INFO  d.a.p.controller.NoteController - Запись с ID "c5d49ef3-1909-4bf8-badd-6b4b4dd4c336". Начан поиск.
+2025-08-25 11:44:41 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select n1_0.note_id,n1_0.body,n1_0.created_at,n1_0.description,n1_0.note_name,n1_0.updated_at,u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from notes n1_0 left join users u1_0 on u1_0.user_id=n1_0.user_id where n1_0.note_id=?
+2025-08-25 11:44:41 [http-nio-8080-exec-1] INFO  d.a.p.controller.NoteController - Запись с ID "c5d49ef3-1909-4bf8-badd-6b4b4dd4c336" найдена.
+2025-08-25 11:44:41 [http-nio-8080-exec-1] INFO  d.a.p.controller.NoteController - Запись с ID "c5d49ef3-1909-4bf8-badd-6b4b4dd4c336" обновляется.
+2025-08-25 11:44:41 [http-nio-8080-exec-1] INFO  d.a.p.controller.NoteController - Запись с ID "c5d49ef3-1909-4bf8-badd-6b4b4dd4c336": имя изменено с "strange bug!" на "wow?"
+2025-08-25 11:44:41 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - UPDATE notes SET note_name = ? WHERE note_id = ?
+2025-08-25 11:44:41 [http-nio-8080-exec-1] TRACE o.s.s.w.h.writers.HstsHeaderWriter - Not injecting HSTS header since it did not match request to [Is Secure]
+2025-08-25 11:44:41 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing PATCH /v1/notes/update
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.s.w.c.SupplierDeferredSecurityContext - Created SecurityContextImpl [Null authentication]
+2025-08-25 11:44:44 [http-nio-8080-exec-2] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:44:44 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select t1_0.token_id,t1_0.access_token,t1_0.is_logged_out,t1_0.refresh_token,t1_0.user_id from tokens t1_0 where t1_0.access_token=?
+2025-08-25 11:44:44 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.user_id=?
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Did not set SecurityContextHolder since already authenticated UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@7c969ef5, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.s.w.a.s.CompositeSessionAuthenticationStrategy - Preparing session with ChangeSessionIdAuthenticationStrategy (1/1)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing PATCH /v1/notes/update
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on PATCH /v1/notes/update using org.springframework.security.authorization.AuthenticatedAuthorizationManager@2805a560
+2025-08-25 11:44:44 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured PATCH /v1/notes/update
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.s.w.h.writers.HstsHeaderWriter - Not injecting HSTS header since it did not match request to [Is Secure]
+2025-08-25 11:44:44 [http-nio-8080-exec-2] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('}' (code 125)): was expecting double-quote to start field name]
+2025-08-25 11:44:44 [http-nio-8080-exec-2] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing PATCH /error
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@7c969ef5, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing PATCH /error
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on PATCH /error using org.springframework.security.authorization.SingleResultAuthorizationManager@7f4e4b57
+2025-08-25 11:44:44 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured PATCH /error
+2025-08-25 11:44:44 [http-nio-8080-exec-2] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Did not set SecurityContextHolder since already authenticated UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@7c969ef5, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2025-08-25 11:44:44 [http-nio-8080-exec-2] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing PATCH /v1/notes/update
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.s.w.c.SupplierDeferredSecurityContext - Created SecurityContextImpl [Null authentication]
+2025-08-25 11:45:23 [http-nio-8080-exec-3] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:45:23 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select t1_0.token_id,t1_0.access_token,t1_0.is_logged_out,t1_0.refresh_token,t1_0.user_id from tokens t1_0 where t1_0.access_token=?
+2025-08-25 11:45:23 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.user_id=?
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Did not set SecurityContextHolder since already authenticated UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@de21d4f, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.s.w.a.s.CompositeSessionAuthenticationStrategy - Preparing session with ChangeSessionIdAuthenticationStrategy (1/1)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing PATCH /v1/notes/update
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on PATCH /v1/notes/update using org.springframework.security.authorization.AuthenticatedAuthorizationManager@2805a560
+2025-08-25 11:45:23 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured PATCH /v1/notes/update
+2025-08-25 11:45:23 [http-nio-8080-exec-3] ERROR d.a.pasteva.advice.ValidationAdvice - Ошибка: Validation failed for argument [0] in public void dev.asteri.pasteva.controller.NoteController.updateNote(dev.asteri.pasteva.dto.UpdateNoteRequest) throws java.security.InvalidParameterException: [Field error in object 'updateNoteRequest' on field 'valid': rejected value [false]; codes [AssertTrue.updateNoteRequest.valid,AssertTrue.valid,AssertTrue]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [updateNoteRequest.valid,valid]; arguments []; default message [valid]]; default message [Нужно обновить хотя бы одно поле!]] 
+Причина: null
+Тело: ProblemDetail[type='about:blank', title='Bad Request', status=400, detail='Invalid request content.', instance='null', properties='null']
+
+2025-08-25 11:45:23 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public void dev.asteri.pasteva.controller.NoteController.updateNote(dev.asteri.pasteva.dto.UpdateNoteRequest) throws java.security.InvalidParameterException: [Field error in object 'updateNoteRequest' on field 'valid': rejected value [false]; codes [AssertTrue.updateNoteRequest.valid,AssertTrue.valid,AssertTrue]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [updateNoteRequest.valid,valid]; arguments []; default message [valid]]; default message [Нужно обновить хотя бы одно поле!]] ]
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing PATCH /v1/notes/v1/notes/update
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing PATCH /v1/notes/v1/notes/update
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on PATCH /v1/notes/v1/notes/update using org.springframework.security.authorization.AuthenticatedAuthorizationManager@2805a560
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Did not set SecurityContextHolder since already authenticated UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@de21d4f, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2025-08-25 11:45:23 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured PATCH /v1/notes/v1/notes/update
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.s.w.h.writers.HstsHeaderWriter - Not injecting HSTS header since it did not match request to [Is Secure]
+2025-08-25 11:45:23 [http-nio-8080-exec-3] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing PATCH /error
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@de21d4f, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing PATCH /error
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on PATCH /error using org.springframework.security.authorization.SingleResultAuthorizationManager@7f4e4b57
+2025-08-25 11:45:23 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured PATCH /error
+2025-08-25 11:45:23 [http-nio-8080-exec-3] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Did not set SecurityContextHolder since already authenticated UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@de21d4f, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2025-08-25 11:45:23 [http-nio-8080-exec-3] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:45:41 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /signup
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.s.w.c.SupplierDeferredSecurityContext - Created SecurityContextImpl [Null authentication]
+2025-08-25 11:45:41 [http-nio-8080-exec-5] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to AnonymousAuthenticationToken [Principal=anonymousUser, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_ANONYMOUS]]
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing POST /signup
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on POST /signup using org.springframework.security.authorization.SingleResultAuthorizationManager@7f4e4b57
+2025-08-25 11:45:41 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /signup
+2025-08-25 11:45:41 [http-nio-8080-exec-5] INFO  d.a.p.c.AuthenticationController - Имя пользователя: "ALEX3XXX". Начата регистрация.
+2025-08-25 11:45:41 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select u1_0.user_id from users u1_0 where u1_0.username=? fetch first ? rows only
+2025-08-25 11:45:41 [http-nio-8080-exec-5] ERROR d.a.p.c.AuthenticationController - Имя пользователя: "ALEX3XXX". Имя пользователя занято.
+2025-08-25 11:45:41 [http-nio-8080-exec-5] TRACE o.s.s.w.h.writers.HstsHeaderWriter - Not injecting HSTS header since it did not match request to [Is Secure]
+2025-08-25 11:45:41 [http-nio-8080-exec-5] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:45:43 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /signin
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.s.w.c.SupplierDeferredSecurityContext - Created SecurityContextImpl [Null authentication]
+2025-08-25 11:45:43 [http-nio-8080-exec-6] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to AnonymousAuthenticationToken [Principal=anonymousUser, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_ANONYMOUS]]
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing POST /signin
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on POST /signin using org.springframework.security.authorization.SingleResultAuthorizationManager@7f4e4b57
+2025-08-25 11:45:43 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /signin
+2025-08-25 11:45:43 [http-nio-8080-exec-6] INFO  d.a.p.c.AuthenticationController - Имя пользователя: "ALEX3XXX". Начата авторизация.
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.s.authentication.ProviderManager - Authenticating request with DaoAuthenticationProvider (1/1)
+2025-08-25 11:45:43 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:45:43 [http-nio-8080-exec-6] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+2025-08-25 11:45:43 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:45:43 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select t1_0.token_id,t1_0.access_token,t1_0.is_logged_out,t1_0.refresh_token,t1_0.user_id from tokens t1_0 join users u1_0 on u1_0.user_id=t1_0.user_id where u1_0.user_id=? and t1_0.is_logged_out=false
+2025-08-25 11:45:43 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - update tokens set access_token=?,is_logged_out=?,refresh_token=?,user_id=? where token_id=?
+2025-08-25 11:45:43 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - insert into tokens (access_token,is_logged_out,refresh_token,user_id,token_id) values (?,?,?,?,?)
+2025-08-25 11:45:43 [http-nio-8080-exec-6] TRACE o.s.s.w.h.writers.HstsHeaderWriter - Not injecting HSTS header since it did not match request to [Is Secure]
+2025-08-25 11:45:43 [http-nio-8080-exec-6] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:45:52 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /v1/users/profile
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.s.w.c.SupplierDeferredSecurityContext - Created SecurityContextImpl [Null authentication]
+2025-08-25 11:45:52 [http-nio-8080-exec-8] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:45:52 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:45:52 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select t1_0.token_id,t1_0.access_token,t1_0.is_logged_out,t1_0.refresh_token,t1_0.user_id from tokens t1_0 where t1_0.access_token=?
+2025-08-25 11:45:52 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.user_id=?
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Did not set SecurityContextHolder since already authenticated UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@79afdf37, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.s.w.a.s.CompositeSessionAuthenticationStrategy - Preparing session with ChangeSessionIdAuthenticationStrategy (1/1)
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing GET /v1/users/profile
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on GET /v1/users/profile using org.springframework.security.authorization.AuthenticatedAuthorizationManager@2805a560
+2025-08-25 11:45:52 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /v1/users/profile
+2025-08-25 11:45:52 [http-nio-8080-exec-8] INFO  d.a.p.controller.UserController - Пользователь "ALEX3XXX": получение профиля.
+2025-08-25 11:45:52 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:45:52 [http-nio-8080-exec-8] INFO  d.a.p.controller.UserController - Пользователь "ALEX3XXX": профиль получен.
+2025-08-25 11:45:52 [http-nio-8080-exec-8] INFO  d.a.p.controller.UserController - Пользователь с ID "a12e4155-353b-4bea-aac0-222c5d27d501": поиск профиля.
+2025-08-25 11:45:52 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - SELECT note_id FROM notes WHERE user_id = ?
+2025-08-25 11:45:52 [http-nio-8080-exec-8] INFO  d.a.p.controller.UserController - Пользователь с ID "a12e4155-353b-4bea-aac0-222c5d27d501" найден.
+2025-08-25 11:45:52 [http-nio-8080-exec-8] TRACE o.s.s.w.h.writers.HstsHeaderWriter - Not injecting HSTS header since it did not match request to [Is Secure]
+2025-08-25 11:45:52 [http-nio-8080-exec-8] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing PATCH /v1/notes/update
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.s.w.c.SupplierDeferredSecurityContext - Created SecurityContextImpl [Null authentication]
+2025-08-25 11:45:55 [http-nio-8080-exec-9] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:45:55 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select t1_0.token_id,t1_0.access_token,t1_0.is_logged_out,t1_0.refresh_token,t1_0.user_id from tokens t1_0 where t1_0.access_token=?
+2025-08-25 11:45:55 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.user_id=?
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Did not set SecurityContextHolder since already authenticated UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@2627ab79, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.s.w.a.s.CompositeSessionAuthenticationStrategy - Preparing session with ChangeSessionIdAuthenticationStrategy (1/1)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing PATCH /v1/notes/update
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on PATCH /v1/notes/update using org.springframework.security.authorization.AuthenticatedAuthorizationManager@2805a560
+2025-08-25 11:45:55 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured PATCH /v1/notes/update
+2025-08-25 11:45:55 [http-nio-8080-exec-9] ERROR d.a.pasteva.advice.ValidationAdvice - Ошибка: Validation failed for argument [0] in public void dev.asteri.pasteva.controller.NoteController.updateNote(dev.asteri.pasteva.dto.UpdateNoteRequest) throws java.security.InvalidParameterException: [Field error in object 'updateNoteRequest' on field 'valid': rejected value [false]; codes [AssertTrue.updateNoteRequest.valid,AssertTrue.valid,AssertTrue]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [updateNoteRequest.valid,valid]; arguments []; default message [valid]]; default message [Нужно обновить хотя бы одно поле!]] 
+Причина: null
+Тело: ProblemDetail[type='about:blank', title='Bad Request', status=400, detail='Invalid request content.', instance='null', properties='null']
+
+2025-08-25 11:45:55 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public void dev.asteri.pasteva.controller.NoteController.updateNote(dev.asteri.pasteva.dto.UpdateNoteRequest) throws java.security.InvalidParameterException: [Field error in object 'updateNoteRequest' on field 'valid': rejected value [false]; codes [AssertTrue.updateNoteRequest.valid,AssertTrue.valid,AssertTrue]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [updateNoteRequest.valid,valid]; arguments []; default message [valid]]; default message [Нужно обновить хотя бы одно поле!]] ]
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing PATCH /v1/notes/v1/notes/update
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing PATCH /v1/notes/v1/notes/update
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on PATCH /v1/notes/v1/notes/update using org.springframework.security.authorization.AuthenticatedAuthorizationManager@2805a560
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Did not set SecurityContextHolder since already authenticated UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@2627ab79, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2025-08-25 11:45:55 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured PATCH /v1/notes/v1/notes/update
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.s.w.h.writers.HstsHeaderWriter - Not injecting HSTS header since it did not match request to [Is Secure]
+2025-08-25 11:45:55 [http-nio-8080-exec-9] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing PATCH /error
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@2627ab79, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]]
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing PATCH /error
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on PATCH /error using org.springframework.security.authorization.SingleResultAuthorizationManager@7f4e4b57
+2025-08-25 11:45:55 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured PATCH /error
+2025-08-25 11:45:55 [http-nio-8080-exec-9] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Did not set SecurityContextHolder since already authenticated UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@2627ab79, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2025-08-25 11:45:55 [http-nio-8080-exec-9] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Trying to match request against DefaultSecurityFilterChain defined as 'filterChain' in [class path resource [dev/asteri/pasteva/config/SecurityConfig.class]] matching [any request] and having filters [DisableEncodeUrl, WebAsyncManagerIntegration, SecurityContextPersistence, HeaderWriter, Logout, Jwt, RequestCacheAware, SecurityContextHolderAwareRequest, AnonymousAuthentication, SessionManagement, ExceptionTranslation, Authorization] (1/1)
+2025-08-25 11:46:19 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing PATCH /v1/notes/update
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking DisableEncodeUrlFilter (1/12)
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking WebAsyncManagerIntegrationFilter (2/12)
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextPersistenceFilter (3/12)
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.s.w.c.SupplierDeferredSecurityContext - Created SecurityContextImpl [Null authentication]
+2025-08-25 11:46:19 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking HeaderWriterFilter (4/12)
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking LogoutFilter (5/12)
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.s.w.a.logout.LogoutFilter - Did not match request to Or [Ant [pattern='/logout', GET], Ant [pattern='/logout', POST], Ant [pattern='/logout', PUT], Ant [pattern='/logout', DELETE]]
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking JwtFilter (6/12)
+2025-08-25 11:46:19 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2025-08-25 11:46:19 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select t1_0.token_id,t1_0.access_token,t1_0.is_logged_out,t1_0.refresh_token,t1_0.user_id from tokens t1_0 where t1_0.access_token=?
+2025-08-25 11:46:19 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.user_id=?
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking RequestCacheAwareFilter (7/12)
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking SecurityContextHolderAwareRequestFilter (8/12)
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking AnonymousAuthenticationFilter (9/12)
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking SessionManagementFilter (10/12)
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.s.w.a.AnonymousAuthenticationFilter - Did not set SecurityContextHolder since already authenticated UsernamePasswordAuthenticationToken [Principal=dev.asteri.pasteva.model.User@75ab40f5, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER]]
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.s.w.a.s.CompositeSessionAuthenticationStrategy - Preparing session with ChangeSessionIdAuthenticationStrategy (1/1)
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking ExceptionTranslationFilter (11/12)
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.security.web.FilterChainProxy - Invoking AuthorizationFilter (12/12)
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Authorizing PATCH /v1/notes/update
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.s.w.a.i.RequestMatcherDelegatingAuthorizationManager - Checking authorization on PATCH /v1/notes/update using org.springframework.security.authorization.AuthenticatedAuthorizationManager@2805a560
+2025-08-25 11:46:19 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured PATCH /v1/notes/update
+2025-08-25 11:46:19 [http-nio-8080-exec-1] INFO  d.a.p.controller.NoteController - Запись с ID "c5d49ef3-1909-4bf8-badd-6b4b4dd4c336". Начан поиск.
+2025-08-25 11:46:19 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select n1_0.note_id,n1_0.body,n1_0.created_at,n1_0.description,n1_0.note_name,n1_0.updated_at,u1_0.user_id,u1_0.user_password,u1_0.registered_at,u1_0.role,u1_0.updated_at,u1_0.username from notes n1_0 left join users u1_0 on u1_0.user_id=n1_0.user_id where n1_0.note_id=?
+2025-08-25 11:46:19 [http-nio-8080-exec-1] INFO  d.a.p.controller.NoteController - Запись с ID "c5d49ef3-1909-4bf8-badd-6b4b4dd4c336" найдена.
+2025-08-25 11:46:19 [http-nio-8080-exec-1] INFO  d.a.p.controller.NoteController - Запись с ID "c5d49ef3-1909-4bf8-badd-6b4b4dd4c336" обновляется.
+2025-08-25 11:46:19 [http-nio-8080-exec-1] INFO  d.a.p.controller.NoteController - Запись с ID "c5d49ef3-1909-4bf8-badd-6b4b4dd4c336": имя изменено с "wow?" на "cringe"
+2025-08-25 11:46:19 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - UPDATE notes SET note_name = ? WHERE note_id = ?
+2025-08-25 11:46:19 [http-nio-8080-exec-1] TRACE o.s.s.w.h.writers.HstsHeaderWriter - Not injecting HSTS header since it did not match request to [Is Secure]
+2025-08-25 11:46:19 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request

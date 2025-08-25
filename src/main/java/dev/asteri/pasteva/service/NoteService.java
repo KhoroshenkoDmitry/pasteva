@@ -39,11 +39,7 @@ public class NoteService {
     public void updateNameById(String name, UUID noteId) {
         repository.updateNameById(name, noteId);
     }
-
-    public boolean existsById(UUID noteId) {
-        return repository.existsById(noteId);
-    }
-
+    
     public List<UUID> findAllIdsByUserId(UUID userId) {
         return repository.findAllIdsByUserId(userId);
     }

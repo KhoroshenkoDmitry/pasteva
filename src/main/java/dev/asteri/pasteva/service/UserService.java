@@ -30,10 +30,6 @@ public class UserService implements UserDetailsService {
         return repository.existsByUsername(username);
     }
 
-    public boolean existsById(UUID id) {
-        return repository.existsById(id);
-    }
-
     public Optional<User> findById(UUID id) {
         return repository.findById(id);
     }
