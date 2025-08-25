@@ -48,7 +48,7 @@ Swagger UI находится на стандартном URL: `http://localhost
 
 `JWT-SECRET` `DB-PASSWORD` `DB-URL` `DB-USERNAME`
 
-
+Также в `src/main/resources/logback-spring.xml` необходимо указать путь до директории, где будут храниться логи.
 
 
 ## TODO
